@@ -12,10 +12,8 @@ services:
       - "8000:8000"
     depends_on:
       - database
-      - redis
     links:
         - database
-        - redis
     command: bash -c "python3 manage.py runserver 0.0.0.0:8000"
   database:
     container_name: database
