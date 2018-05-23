@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    container_name: django
+    environment:
+      TIME_ZONE: America/Sao_Paulo
+    build: .
+    volumes:
+      - ./source:/source
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+      - redis
+    links:
+        - database
+        - redis
+    command: bash -c "python3 manage.py runserver 0.0.0.0:8000"
+  database:
+    container_name: database
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: masterpass
+      POSTGRES_USER: userdb
+      POSTGRES_DB: touristspot
