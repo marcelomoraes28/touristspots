@@ -1,1 +1,3 @@
 __pyacache__
+*.pyc
+.idea
